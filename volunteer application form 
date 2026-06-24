@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Application - Benjamin's Foundation Kenya</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32; /* Forest Green */
+            --secondary-color: #f57c00; /* Warm Amber/Orange */
+            --text-color: #333333;
+            --bg-color: #f4f6f4;
+            --card-bg: #ffffff;
+            --border-color: #cccccc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        fieldset:last-of-type {
+            border-bottom: none;
+        }
+
+        legend {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .required::after {
+            content: " *";
+            color: #de350b;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Success Message Styling */
+        #success-message {
+            display: none;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            padding: 25px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        #success-message h2 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div id="form-wrapper">
+        <h1>Benjamin's Foundation Kenya Volunteer Application Form</h1>
+        <p class="description">Thank you for your interest in volunteering with Benjamin's Foundation Kenya. Please complete this application form. Once submitted, we will review your application and contact you regarding availability, accommodation, volunteer contribution, and next steps.</p>
+
+        <form id="volunteerForm" action="#" method="POST">
+            
+            <fieldset>
+                <legend>SECTION 1: Personal Information</legend>
+                
+                <div class="form-group">
+                    <label for="fullname" class="required">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob" class="required">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="gender" value="Male"> Male</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Female"> Female</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Prefer not to say"> Prefer not to say</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nationality" class="required">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="residence" class="required">Country of Residence</label>
+                    <input type="text" id="residence" name="residence" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="required">Phone Number (including country code)</label>
+                    <input type="text" id="phone" name="phone" placeholder="+254..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Current Address</label>
+                    <textarea id="address" name="address"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 2: Volunteer Placement Details</legend>
+                
+                <div class="form-group">
+                    <label class="required">Preferred Volunteer Focus Area (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Teaching English"> Teaching English</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Teaching Mathematics"> Teaching Mathematics</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Sports & Games"> Sports & Games</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Music & Dance"> Music & Dance</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Arts & Crafts"> Arts & Crafts</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Computer Skills"> Computer Skills</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Childcare Support"> Childcare Support</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Community Development"> Community Development</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Environmental Activities"> Environmental Activities</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="arrival_date" class="required">Expected Arrival Date</label>
+                    <input type="date" id="arrival_date" name="arrival_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="departure_date" class="required">Expected Departure Date</label>
+                    <input type="date" id="departure_date" name="departure_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="stay_length" class="required">Length of Stay</label>
+                    <input type="text" id="stay_length" name="stay_length" placeholder="e.g., 4 weeks" required>
+                </div>
+
+                <div class="form-group">
+                    <label>How did you hear about Benjamin's Foundation Kenya?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="referral" value="Website"> Website</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Social Media"> Social Media</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Friend/Family"> Friend/Family</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Volunteer Platform"> Volunteer Platform</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Google Search"> Google Search</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Other"> Other</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 3: Skills & Experience</legend>
+                
+                <div class="form-group">
+                    <label for="education">Education Level</label>
+                    <input type="text" id="education" name="education">
+                </div>
+
+                <div class="form-group">
+                    <label for="occupation">Current Occupation/Studies</label>
+                    <input type="text" id="occupation" name="occupation">
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Relevant Skills</label>
+                    <textarea id="skills" name="skills"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="prev_experience">Previous Volunteer Experience</label>
+                    <textarea id="prev_experience" name="prev_experience"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="languages">Languages Spoken</label>
+                    <input type="text" id="languages" name="languages">
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have experience working with children?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="child_experience" value="Yes"> Yes</label>
+                        <label class="radio-item"><input type="radio" name="child_experience" value="No"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="child_experience_details">If yes, please describe.</label>
+                    <textarea id="child_experience_details" name="child_experience_details"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 4: Motivation</legend>
+                
+                <div class="form-group">
+                    <label for="motivation" class="required">Why would you like to volunteer with Benjamin's Foundation Kenya?</label>
+                    <textarea id="motivation" name="motivation" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contribution" class="required">What would you like to contribute during your stay?</label>
+                    <textarea id="contribution" name="contribution" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="learning_goals">What do you hope to learn from this experience?</label>
+                    <textarea id="learning_goals" name="learning_goals"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 5: Health & Emergency Information</legend>
+                
+                <div class="form-group">
+                    <label for="medical">Do you have any medical conditions, allergies, or dietary requirements we should know about?</label>
+                    <textarea id="medical" name="medical"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_name" class="required">Emergency Contact Name</label>
+                    <input type="text" id="emergency_name" name="emergency_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_relationship" class="required">Relationship to Emergency Contact</label>
+                    <input type="text" id="emergency_relationship" name="emergency_relationship" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_phone" class="required">Emergency Contact Phone Number</label>
+                    <input type="text" id="emergency_phone" name="emergency_phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_email">Emergency Contact Email Address</label>
+                    <input type="email" id="emergency_email" name="emergency_email">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 6: Accommodation & Program Information</legend>
+                
+                <div class="form-group">
+                    <label class="required">Volunteers stay with a local host family and contribute towards accommodation, meals, and project support. Have you read and understood this information?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="accommodation_understood" value="Yes" required> Yes</label>
+                        <label class="radio-item"><input type="radio" name="accommodation_understood" value="No" required> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="accommodation_questions">Do you have any questions about accommodation or the volunteer program?</label>
+                    <textarea id="accommodation_questions" name="accommodation_questions"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 7: Additional Information</legend>
+                
+                <div class="form-group">
+                    <label for="additional_info">Is there anything else you would like us to know?</label>
+                    <textarea id="additional_info" name="additional_info"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 8: Declaration</legend>
+                
+                <div class="form-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="declaration_confirm" required>
+                        <span class="required">I confirm that the information provided in this application is accurate to the best of my knowledge.</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="signature" class="required">Full Name (Electronic Signature)</label>
+                    <input type="text" id="signature" name="signature" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="declaration_date" class="required">Date</label>
+                    <input type="date" id="declaration_date" name="declaration_date" required>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+
+    <div id="success-message">
+        <h2>Thank you for applying to volunteer with Benjamin's Foundation Kenya.</h2>
+        <p>We have received your application and will review it shortly. We will contact you by email regarding availability, accommodation arrangements, volunteer contribution details, and the next steps.</p>
+        <p><strong>We appreciate your interest in supporting children and communities in Kenya.</strong></p>
+    </div>
+</div>
+
+<script>
+    // Front-end preview handling for submission behavior
+    document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+        // If you connect a backend service, you can remove e.preventDefault()
+        e.preventDefault(); 
+        
+        // Hide form and show confirmation message
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+        window.scrollTo(0, 0);
+    });
+</script>
+
+</body>
+</html>
