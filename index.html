@@ -1,610 +1,432 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin’s Foundation Kenia | Empowering Communities</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Volunteer Application - Benjamin's Foundation Kenya</title>
     <style>
-        .modal {
-            transition: opacity 0.25s ease, visibility 0.25s ease;
+        :root {
+            --primary-color: #2e7d32; /* Forest Green */
+            --secondary-color: #f57c00; /* Warm Amber/Orange */
+            --text-color: #333333;
+            --bg-color: #f4f6f4;
+            --card-bg: #ffffff;
+            --border-color: #cccccc;
         }
-        .active-tab {
-            border-bottom-color: #f97316;
-            color: #f97316;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        fieldset:last-of-type {
+            border-bottom: none;
+        }
+
+        legend {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .required::after {
+            content: " *";
+            color: #de350b;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Success Message Styling */
+        #success-message {
+            display: none;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            padding: 25px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        #success-message h2 {
+            color: #2e7d32;
+            margin-top: 0;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body>
 
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
-                    BFK
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-black text-xl tracking-tight text-slate-950 uppercase">Benjamin's</span>
-                    <span class="text-xs font-bold text-amber-600 tracking-widest uppercase -mt-1">Foundation Kenia</span>
-                </div>
-            </a>
+<div class="form-container">
+    <div id="form-wrapper">
+        <h1>Benjamin's Foundation Kenya Volunteer Application Form</h1>
+        <p class="description">Thank you for your interest in volunteering with Benjamin's Foundation Kenya. Please complete this application form. Once submitted, we will review your application and contact you regarding availability, accommodation, volunteer contribution, and next steps.</p>
 
-            <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm tracking-wide text-slate-600">
-                <a href="#home" class="hover:text-amber-600 transition-colors">Home</a>
-                <a href="#about" class="hover:text-amber-600 transition-colors">About Us</a>
-                <a href="#programs" class="hover:text-amber-600 transition-colors">Our Programs</a>
-                <a href="#volunteer" class="hover:text-amber-600 transition-colors">Volunteer Info</a>
-                <a href="#perks" class="hover:text-amber-600 transition-colors">Perks & Free Time</a>
-                <a href="#gallery" class="hover:text-amber-600 transition-colors">Gallery</a>
-                <a href="#contact" class="hover:text-amber-600 transition-colors">Contact</a>
-            </nav>
-
-            <div class="hidden md:block">
-                <button onclick="openDonateModal()" class="cursor-pointer bg-gradient-to-r align-middle from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 text-sm uppercase tracking-wider">
-                    Donate Now
-                </button>
-            </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-slate-700 text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3 shadow-inner">
-            <a href="#home" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Home</a>
-            <a href="#about" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">About Us</a>
-            <a href="#programs" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Our Programs</a>
-            <a href="#volunteer" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Volunteer Info</a>
-            <a href="#perks" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Perks & Free Time</a>
-            <a href="#gallery" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Gallery</a>
-            <a href="#contact" class="block font-semibold text-slate-700 hover:text-amber-600 transition-colors">Contact</a>
-            <button onclick="openDonateModal(); toggleMobileMenu();" class="w-full text-center bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold py-3 rounded-xl mt-2 block shadow-md">
-                Donate Now
-            </button>
-        </div>
-    </header>
-
-    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-slate-900 text-white overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="IMG-20260220-WA0015.jpg" alt="Benjamin's Foundation Kenia Community" class="w-full h-full object-cover object-center opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-950/40"></div>
-        </div>
-
-        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xs uppercase tracking-widest mb-6 border border-amber-500/30">
-                <i class="fa-solid fa-heart animate-pulse"></i> Non-Profit Day Care Center | Mombasa, Kenya
-            </span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none mb-6">
-                Join Benjamin's Foundation.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300">Free Education For Over 30+ Children.</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-10 font-medium leading-relaxed">
-                We provide free educational access to vulnerable kids in East Africa. Urgent help is needed now throughout 2026—stay as long as you want to make an authentic difference!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button onclick="openVolunteerModal()" class="cursor-pointer w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-8 py-4 rounded-full text-base uppercase tracking-wider shadow-xl transition-all transform hover:-translate-y-0.5">
-                    Become a Volunteer
-                </button>
-                <button onclick="openDonateModal()" class="cursor-pointer w-full sm:w-auto border-2 border-white/80 hover:border-white bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-3.5 rounded-full text-base uppercase tracking-wider backdrop-blur-sm transition-all">
-                    Donate Now
-                </button>
-            </div>
-
-            <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
-                <div>
-                    <h3 class="text-2xl md:text-3xl font-black text-amber-400">30+ Kids</h3>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Ages 3 to 12 Years Old</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl md:text-3xl font-black text-amber-400">Age 18+ / Families</h3>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">All Households Welcome</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl md:text-3xl font-black text-amber-400">2026 Urgent</h3>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Immediate Placements Open</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl md:text-3xl font-black text-amber-400">Flexible Stay</h3>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Stay As Long As You Want</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                
-                <div class="lg:col-span-7 space-y-8">
-                    <div>
-                        <span class="text-amber-600 font-extrabold text-xs uppercase tracking-widest block mb-2">About Us</span>
-                        <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Our Day Care Center in Mombasa</h2>
-                    </div>
-                    
-                    <div class="space-y-4 text-slate-600 leading-relaxed font-medium">
-                        <p>
-                            We are a registered non-profit Day Care Center located in the vibrant coastal city of Mombasa, Kenya. Currently, we look after more than 30 beautiful vulnerable children ranging from 3 to 12 years old, offering them free early-childhood learning, safety, and pathways out of poverty.
-                        </p>
-                        <p class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-slate-800 font-semibold">
-                            <strong>An Authentic Cultural Experience:</strong> As a volunteer, you will get to stay directly with the loving family of our school director! Enjoy the incredible coastal weather, bond over homecooked local dishes, and immerse yourself fully in community life. Send us a message to find out more!
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm">
-                            <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white text-lg font-bold mb-3"><i class="fa-solid fa-plane"></i></div>
-                            <h4 class="font-bold text-slate-950 text-base mb-1">Airport Connections</h4>
-                            <p class="text-sm text-slate-600 font-medium">We coordinate smooth arrival pathways via <strong>Jomo Kenyatta International Airport (NBO)</strong> or directly through <strong>Moi International Airport (MBA)</strong> right here in Mombasa.</p>
-                        </div>
-                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm">
-                            <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white text-lg font-bold mb-3"><i class="fa-solid fa-users"></i></div>
-                            <h4 class="font-bold text-slate-950 text-base mb-1">Who Can Join?</h4>
-                            <p class="text-sm text-slate-600 font-medium">Independent travelers must be <strong>18+</strong>, but we also extend warm invitations to complete families traveling with children of their own!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5">
-                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-100 shadow-xl shadow-slate-200/50 relative overflow-hidden">
-                        <div class="aspect-w-3 aspect-h-4 rounded-2xl overflow-hidden mb-6 bg-slate-200 shadow-inner">
-                            <img src="20260520_105629.jpg" alt="Cliford Benjamin - Founder of Benjamin’s Foundation Kenia" class="w-full h-full object-cover object-center">
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-baseline">
-                                <h3 class="text-xl font-black text-slate-950">Cliford Benjamin</h3>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">Founder & Project Director</span>
-                            </div>
-                            <p class="text-sm text-slate-600 font-medium leading-relaxed pt-2">
-                                "Driven by a deep vision to create pathways out of poverty, I established Benjamin’s Foundation Kenia to deliver structural resources, functional education, and socioeconomic dignity directly into our community's hands. Our field transparency and hyper-local accountability ensure every international supporter or local advocate makes an immediate, verifiable footprint on the ground."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="volunteer" class="py-24 bg-slate-50 border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                
-                <div class="lg:col-span-7 space-y-8">
-                    <div>
-                        <span class="text-amber-600 font-extrabold text-xs uppercase tracking-widest block mb-2">Daily Field Operations</span>
-                        <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Your Essential Volunteer Duties</h2>
-                        <p class="text-slate-600 font-medium mt-2">We love creativity and enthusiasm! Volunteers play a direct role in elevating our day-to-day school environment across 7 core areas:</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">01</div>
-                            <p class="text-sm font-bold text-slate-800">Teach fun interactive games to kids</p>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">02</div>
-                            <p class="text-sm font-bold text-slate-800">Teach conversational & foundational English</p>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">03</div>
-                            <p class="text-sm font-bold text-slate-800">Teach sports and organize recess activities</p>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">04</div>
-                            <p class="text-sm font-bold text-slate-800">Teach music, song structures, and dance routines</p>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">05</div>
-                            <p class="text-sm font-bold text-slate-800">Paint classrooms and decorate creative spaces</p>
-                        </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
-                            <div class="text-amber-500 font-black text-lg">06</div>
-                            <p class="text-sm font-bold text-slate-800">Help in the kitchen preparing meals for children</p>
-                        </div>
-                        <div class="flex-span-1 sm:col-span-2 flex gap-4 p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 shadow-sm border border-amber-200">
-                            <div class="text-amber-600 font-black text-lg">07</div>
-                            <p class="text-sm font-bold text-slate-900">Teach a new language entirely! (Spanish, French, German, etc.)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-2xl sticky top-24">
-                    <div class="space-y-6">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Financial Integrity Note</span>
-                            <h3 class="text-2xl font-black mt-1">Zero Program Fees</h3>
-                        </div>
-                        <p class="text-sm text-slate-300 font-medium leading-relaxed">
-                            As a grassroots community mission, <strong>we do not charge anything to volunteer with us</strong>. To sustain our daily kitchen and vital operations seamlessly, volunteers simply cover their direct living utilities.
-                        </p>
-                        
-                        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 text-center space-y-1">
-                            <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">All-Inclusive Living Fee</span>
-                            <div class="text-4xl font-black text-amber-400">€12 / Day</div>
-                            <span class="text-[11px] text-slate-300 block font-medium pt-2">Covers: 3 healthy meals a day, private bedroom space, household WiFi access, safe clean drinking water, toilet paper, and kitchen cooking gas.</span>
-                        </div>
-
-                        <div class="pt-2">
-                            <button onclick="openVolunteerModal()" class="cursor-pointer w-full text-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl text-sm uppercase tracking-wider shadow-lg transition-all">
-                                Apply For 2026 Term Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="perks" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <form id="volunteerForm" action="#" method="POST">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                <div class="space-y-6 p-8 bg-slate-50 border border-slate-100 rounded-3xl shadow-sm">
-                    <h3 class="text-2xl font-black text-slate-950 flex items-center gap-2">
-                        <i class="fa-solid fa-gift text-amber-500"></i> What You Get In Return
-                    </h3>
-                    <ul class="space-y-3 font-semibold text-slate-700 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-600"></i> Private bedroom in a safe host family home environment</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-600"></i> Discounted and 100% free trips across Kenya visiting National Parks & Safaris</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-600"></i> Organized campings and exploration trips during weekends</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-emerald-600"></i> Beautiful authentic African gifts to take back home to your family</li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6 p-8 bg-slate-900 text-white rounded-3xl shadow-xl">
-                    <h3 class="text-2xl font-black text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-compass"></i> On Your Free Time
-                    </h3>
-                    <p class="text-xs text-slate-400 font-medium -mt-2">Mombasa is the perfect launching pad to explore incredible attractions across East Africa:</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-200">
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Visit famous Tsavo National Park</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Feed Giraffes at the Giraffe Centre</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Watch wild dolphins at Wasini Island</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Visit traditional Maasai communities</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Choose from 5+ parks for game drives</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-500"></i> Learn to craft beaded African jewelry</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-amber-500 to-orange-600 rounded-3xl p-8 sm:p-12 text-center text-white space-y-6 shadow-xl max-w-5xl mx-auto">
-                <h3 class="text-3xl font-black tracking-tight">Ready to Coordinate Your Experience?</h3>
-                <p class="max-w-2xl mx-auto font-medium text-sm sm:text-base text-amber-50">
-                    Whether you are an independent traveler looking for real impact or a family wanting to share a cultural journey, we have a spot open for you across 2026.
-                </p>
-                <button onclick="openVolunteerModal()" class="cursor-pointer bg-white text-slate-950 font-black px-8 py-3.5 rounded-full uppercase tracking-wider text-sm shadow-md hover:bg-slate-50 transition-all">
-                    Send Us A Message Now
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="programs" class="py-24 bg-slate-50 border-t border-slate-100 hidden">
-        <!-- Kept original programmatic structure targets hidden for asset persistence -->
-    </section>
-
-    <section id="gallery" class="py-24 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-12">
-                <div>
-                    <span class="text-amber-600 font-extrabold text-xs uppercase tracking-widest block mb-2">Media Vault</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Authentic Real-World Field Footage</h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group rounded-2xl overflow-hidden border border-slate-100 bg-white shadow-sm hover:shadow-md transition-all">
-                    <div class="aspect-w-4 aspect-h-3 overflow-hidden bg-slate-200">
-                        <img src="20260520_105940.jpg" alt="Local children smiling at project setting" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="p-4"><p class="text-xs font-bold text-slate-700">Joyful moments sharing community milestones during field check-ins.</p></div>
-                </div>
-                <div class="group rounded-2xl overflow-hidden border border-slate-100 bg-white shadow-sm hover:shadow-md transition-all">
-                    <div class="aspect-w-4 aspect-h-3 overflow-hidden bg-slate-200">
-                        <img src="IMG_2674.jpg" alt="Classroom learning environment setup" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="p-4"><p class="text-xs font-bold text-slate-700">Classroom learning sessions actively managed by educational project modules.</p></div>
-                </div>
-                <div class="group rounded-2xl overflow-hidden border border-slate-100 bg-white shadow-sm hover:shadow-md transition-all">
-                    <div class="aspect-w-4 aspect-h-3 overflow-hidden bg-slate-200">
-                        <img src="IMG_1874.jpg" alt="Volunteers and local students laughing" class="w-full h-full object-cover object-center">
-                    </div>
-                    <div class="p-4"><p class="text-xs font-bold text-slate-700">Peer mentorship integrations cultivating shared cross-cultural linkages.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <fieldset>
+                <legend>SECTION 1: Personal Information</legend>
                 
-                <div class="lg:col-span-5 space-y-8">
-                    <div>
-                        <span class="text-amber-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Get in Touch</span>
-                        <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Connect directly with Cliford</h2>
-                        <p class="text-sm text-slate-400 font-medium mt-3 leading-relaxed">
-                            Have questions regarding regulatory documents, host capacity pipelines, airport pickup times, or baseline logistics? Reach out through direct channels anytime.
-                        </p>
-                    </div>
+                <div class="form-group">
+                    <label for="fullname" class="required">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
 
-                    <div class="space-y-4 text-sm font-semibold">
-                        <a href="https://wa.me/254742465641" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
-                            <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white text-base"><i class="fa-brands fa-whatsapp"></i></div>
-                            <div>
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Instant Chat Updates</span>
-                                <span class="text-white group-hover:text-amber-400 transition-colors">WhatsApp Coordination Support</span>
-                            </div>
-                        </a>
-                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 text-base"><i class="fa-solid fa-envelope"></i></div>
-                            <div>
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Formal Inquiries</span>
-                                <span class="text-white">benjaminshomekenia@gmail.com</span>
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label for="dob" class="required">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="gender" value="Male"> Male</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Female"> Female</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Prefer not to say"> Prefer not to say</label>
+                        <label class="radio-item"><input type="radio" name="gender" value="Other"> Other</label>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 bg-white text-slate-900 rounded-3xl p-8 shadow-2xl space-y-6">
-                    <h3 class="text-xl font-black text-slate-950 border-b border-slate-100 pb-4">Submit General Message Entry</h3>
-                    <form onsubmit="event.preventDefault(); alert('Message successfully logged into operational database simulation.');" class="space-y-4 text-sm font-medium">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700 block">Your Name</label>
-                                <input type="text" required class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-amber-500" placeholder="Cliford">
-                            </div>
-                            <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-700 block">Email Address</label>
-                                <input type="email" required class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-amber-500" placeholder="name@domain.com">
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700 block">Country of Origin</label>
-                            <input type="text" required class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-amber-500" placeholder="Kenya / Germany / United States">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-700 block">Message Details</label>
-                            <textarea required rows="4" class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-amber-500" placeholder="Type structural questions here..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black py-4 rounded-xl text-xs uppercase tracking-wider shadow-md transition-all">
-                            Transmit Inbound Query
-                        </button>
-                    </form>
+                <div class="form-group">
+                    <label for="nationality" class="required">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" required>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-950 text-slate-500 text-xs py-12 border-t border-slate-900 font-medium">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-slate-900 pb-8">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-base">BFK</div>
-                    <div class="flex flex-col">
-                        <span class="font-black text-slate-200 tracking-tight text-sm uppercase">Benjamin's Foundation Kenia</span>
-                        <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">Travel. Serve. Empower.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-                <p>&copy; 2026 Benjamin’s Foundation Kenia. Non-profit Day Care Center infrastructure layout dashboard.</p>
-            </div>
-        </div>
-    </footer>
-
-    <div id="volunteer-modal" class="modal fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none p-4">
-        <div class="bg-white rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative text-sm text-slate-800 font-medium space-y-6">
-            <button onclick="closeVolunteerModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl focus:outline-none cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div>
-                <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block">Direct Submission</span>
-                <h3 class="text-2xl font-black text-slate-950 tracking-tight mt-0.5">Volunteer Application Pipeline</h3>
-                <p class="text-xs text-slate-500 font-medium mt-1">Submit parameters required for our screening logistics processing via Formspree.</p>
-            </div>
-
-            <form action="https://formspree.io/f/mgoqqbvy" method="POST" class="space-y-4">
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-slate-700 block">Full Legal Name *</label>
-                    <input type="text" name="name" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="Jane Doe">
+                <div class="form-group">
+                    <label for="residence" class="required">Country of Residence</label>
+                    <input type="text" id="residence" name="residence" required>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700 block">Email Address *</label>
-                        <input type="email" name="email" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="jane@example.com">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700 block">WhatsApp Phone *</label>
-                        <input type="text" name="phone" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="+49 170 0000000">
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="required">Phone Number (including country code)</label>
+                    <input type="text" id="phone" name="phone" placeholder="+254..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Current Address</label>
+                    <textarea id="address" name="address"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 2: Volunteer Placement Details</legend>
+                
+                <div class="form-group">
+                    <label class="required">Preferred Volunteer Focus Area (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Teaching English"> Teaching English</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Teaching Mathematics"> Teaching Mathematics</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Sports & Games"> Sports & Games</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Music & Dance"> Music & Dance</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Arts & Crafts"> Arts & Crafts</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Computer Skills"> Computer Skills</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Childcare Support"> Childcare Support</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Community Development"> Community Development</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Environmental Activities"> Environmental Activities</label>
+                        <label class="checkbox-item"><input type="checkbox" name="focus_area" value="Other"> Other</label>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700 block">Country of Residence *</label>
-                        <input type="text" name="country" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="Germany">
+                <div class="form-group">
+                    <label for="arrival_date" class="required">Expected Arrival Date</label>
+                    <input type="date" id="arrival_date" name="arrival_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="departure_date" class="required">Expected Departure Date</label>
+                    <input type="date" id="departure_date" name="departure_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="stay_length" class="required">Length of Stay</label>
+                    <input type="text" id="stay_length" name="stay_length" placeholder="e.g., 4 weeks" required>
+                </div>
+
+                <div class="form-group">
+                    <label>How did you hear about Benjamin's Foundation Kenya?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="referral" value="Website"> Website</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Social Media"> Social Media</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Friend/Family"> Friend/Family</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Volunteer Platform"> Volunteer Platform</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Google Search"> Google Search</label>
+                        <label class="radio-item"><input type="radio" name="referral" value="Other"> Other</label>
                     </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-bold text-slate-700 block">Primary Focus *</label>
-                        <select name="focus" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500 bg-white">
-                            <option>Teaching Games, English & Sports</option>
-                            <option>Teaching Music, Dance & Languages</option>
-                            <option>Kitchen Coordination & Painting</option>
-                            <option>Family / Group Volunteering Matrix</option>
-                        </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 3: Skills & Experience</legend>
+                
+                <div class="form-group">
+                    <label for="education">Education Level</label>
+                    <input type="text" id="education" name="education">
+                </div>
+
+                <div class="form-group">
+                    <label for="occupation">Current Occupation/Studies</label>
+                    <input type="text" id="occupation" name="occupation">
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Relevant Skills</label>
+                    <textarea id="skills" name="skills"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="prev_experience">Previous Volunteer Experience</label>
+                    <textarea id="prev_experience" name="prev_experience"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="languages">Languages Spoken</label>
+                    <input type="text" id="languages" name="languages">
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have experience working with children?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="child_experience" value="Yes"> Yes</label>
+                        <label class="radio-item"><input type="radio" name="child_experience" value="No"> No</label>
                     </div>
                 </div>
 
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-slate-700 block">Desired Stay Timeline *</label>
-                    <input type="text" name="timeline" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="E.g., June 2026 - 2 Months (Flexible)">
+                <div class="form-group">
+                    <label for="child_experience_details">If yes, please describe.</label>
+                    <textarea id="child_experience_details" name="child_experience_details"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 4: Motivation</legend>
+                
+                <div class="form-group">
+                    <label for="motivation" class="required">Why would you like to volunteer with Benjamin's Foundation Kenya?</label>
+                    <textarea id="motivation" name="motivation" required></textarea>
                 </div>
 
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-slate-700 block">Message or Skillsets Note</label>
-                    <textarea name="message" rows="3" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:outline-none focus:border-amber-500" placeholder="Tell us about yourself or ask about staying with the director's family..."></textarea>
+                <div class="form-group">
+                    <label for="contribution" class="required">What would you like to contribute during your stay?</label>
+                    <textarea id="contribution" name="contribution" required></textarea>
                 </div>
 
-                <input type="hidden" name="_subject" value="New Volunteer Application - Benjamin's Foundation Kenia">
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md mt-2">
-                    Submit Volunteer Application
-                </button>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label for="learning_goals">What do you hope to learn from this experience?</label>
+                    <textarea id="learning_goals" name="learning_goals"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 5: Health & Emergency Information</legend>
+                
+                <div class="form-group">
+                    <label for="medical">Do you have any medical conditions, allergies, or dietary requirements we should know about?</label>
+                    <textarea id="medical" name="medical"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_name" class="required">Emergency Contact Name</label>
+                    <input type="text" id="emergency_name" name="emergency_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_relationship" class="required">Relationship to Emergency Contact</label>
+                    <input type="text" id="emergency_relationship" name="emergency_relationship" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_phone" class="required">Emergency Contact Phone Number</label>
+                    <input type="text" id="emergency_phone" name="emergency_phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency_email">Emergency Contact Email Address</label>
+                    <input type="email" id="emergency_email" name="emergency_email">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 6: Accommodation & Program Information</legend>
+                
+                <div class="form-group">
+                    <label class="required">Volunteers stay with a local host family and contribute towards accommodation, meals, and project support. Have you read and understood this information?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="accommodation_understood" value="Yes" required> Yes</label>
+                        <label class="radio-item"><input type="radio" name="accommodation_understood" value="No" required> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="accommodation_questions">Do you have any questions about accommodation or the volunteer program?</label>
+                    <textarea id="accommodation_questions" name="accommodation_questions"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 7: Additional Information</legend>
+                
+                <div class="form-group">
+                    <label for="additional_info">Is there anything else you would like us to know?</label>
+                    <textarea id="additional_info" name="additional_info"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>SECTION 8: Declaration</legend>
+                
+                <div class="form-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="declaration_confirm" required>
+                        <span class="required">I confirm that the information provided in this application is accurate to the best of my knowledge.</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="signature" class="required">Full Name (Electronic Signature)</label>
+                    <input type="text" id="signature" name="signature" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="declaration_date" class="required">Date</label>
+                    <input type="date" id="declaration_date" name="declaration_date" required>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
     </div>
 
-    <div id="donate-modal" class="modal fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none p-4">
-        <div class="bg-white rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative text-sm text-slate-800 font-medium space-y-6">
-            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl focus:outline-none cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            
-            <div class="flex justify-between items-start gap-4">
-                <div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block">Direct Livelihood Funding</span>
-                    <h3 class="text-2xl font-black text-slate-950 tracking-tight mt-0.5">Capital Resource Allocation</h3>
-                </div>
-                <div class="bg-slate-100 p-1 rounded-xl flex gap-1 text-xs font-bold select-none">
-                    <button id="curr-kes" onclick="setCurrency('KES')" class="px-3 py-1.5 rounded-lg bg-white text-slate-950 shadow-sm transition-all">KES</button>
-                    <button id="curr-usd" onclick="setCurrency('USD')" class="px-3 py-1.5 rounded-lg text-slate-500 transition-all">USD</button>
-                </div>
-            </div>
-
-            <div class="space-y-3">
-                <label class="text-xs font-bold text-slate-700 block">Select Impact Tier Parameter</label>
-                
-                <div id="tier-1" onclick="selectTier(1, 500, 5)" class="p-4 rounded-2xl border-2 border-amber-500 bg-amber-50/30 cursor-pointer transition-all flex justify-between items-center gap-4">
-                    <div class="space-y-0.5">
-                        <span class="font-extrabold text-slate-950 text-base tier-amt" data-kes="500" data-usd="5">KES 500</span>
-                        <p class="text-xs text-slate-600 leading-relaxed">Secures direct essential school supplies & learning kits for our project children.</p>
-                    </div>
-                    <div class="w-5 h-5 rounded-full border-4 border-amber-500 flex-shrink-0 bg-white"></div>
-                </div>
-
-                <div id="tier-2" onclick="selectTier(2, 2000, 15)" class="p-4 rounded-2xl border border-slate-200 hover:border-slate-300 cursor-pointer transition-all flex justify-between items-center gap-4">
-                    <div class="space-y-0.5">
-                        <span class="font-extrabold text-slate-950 text-base tier-amt" data-kes="2,000" data-usd="15">KES 2,000</span>
-                        <p class="text-xs text-slate-600 leading-relaxed">Funds comprehensive daily nutrition & hot meals across the daycare center.</p>
-                    </div>
-                    <div class="w-5 h-5 rounded-full border border-slate-300 flex-shrink-0 bg-white"></div>
-                </div>
-
-                <div id="tier-3" onclick="selectTier(3, 10000, 75)" class="p-4 rounded-2xl border border-slate-200 hover:border-slate-300 cursor-pointer transition-all flex justify-between items-center gap-4">
-                    <div class="space-y-0.5">
-                        <span class="font-extrabold text-slate-950 text-base tier-amt" data-kes="10,000" data-usd="75">KES 10,000</span>
-                        <p class="text-xs text-slate-600 leading-relaxed">Direct support infrastructure expansions, classroom upgrades, and deep supply sets.</p>
-                    </div>
-                    <div class="w-5 h-5 rounded-full border border-slate-300 flex-shrink-0 bg-white"></div>
-                </div>
-            </div>
-
-            <div class="space-y-2.5 pt-2 border-t border-slate-100">
-                <span class="text-xs font-bold text-slate-700 block">Execute Operational Gateway Execution</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <button onclick="redirectToMPesa()" class="w-full py-3 px-4 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider">
-                        <i class="fa-solid fa-phone"></i> Pay via M-Pesa Mobile
-                    </button>
-                    <button onclick="redirectToPayPal()" class="w-full py-3 px-4 rounded-xl font-bold text-white bg-slate-950 hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider">
-                        <i class="fa-solid fa-credit-card"></i> Pay Secure PayPal
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div id="success-message">
+        <h2>Thank you for applying to volunteer with Benjamin's Foundation Kenya.</h2>
+        <p>We have received your application and will review it shortly. We will contact you by email regarding availability, accommodation arrangements, volunteer contribution details, and the next steps.</p>
+        <p><strong>We appreciate your interest in supporting children and communities in Kenya.</strong></p>
     </div>
+</div>
 
-    <a href="https://wa.me/254742465641" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all group">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="absolute right-16 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity shadow-md">Chat Cliford on WhatsApp</span>
-    </a>
-
-    <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
-        }
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        const volunteerModal = document.getElementById('volunteer-modal');
-        const donateModal = document.getElementById('donate-modal');
-
-        function openVolunteerModal() { volunteerModal.classList.remove('opacity-0', 'pointer-events-none'); }
-        function closeVolunteerModal() { volunteerModal.classList.add('opacity-0', 'pointer-events-none'); }
-        function openDonateModal() { donateModal.classList.remove('opacity-0', 'pointer-events-none'); }
-        function closeDonateModal() { donateModal.classList.add('opacity-0', 'pointer-events-none'); }
-
-        window.addEventListener('click', (e) => {
-            if (e.target === volunteerModal) closeVolunteerModal();
-            if (e.target === donateModal) closeDonateModal();
-        });
-
-        let activeCurrency = 'KES';
-        let currentSelectedValue = 500; 
-
-        function setCurrency(target) {
-            if (activeCurrency === target) return;
-            activeCurrency = target;
-            document.getElementById('curr-kes').className = target === 'KES' ? 'px-3 py-1.5 rounded-lg bg-white text-slate-950 shadow-sm transition-all' : 'px-3 py-1.5 rounded-lg text-slate-500 transition-all';
-            document.getElementById('curr-usd').className = target === 'USD' ? 'px-3 py-1.5 rounded-lg bg-white text-slate-950 shadow-sm transition-all' : 'px-3 py-1.5 rounded-lg text-slate-500 transition-all';
-
-            const targetElements = document.querySelectorAll('.tier-amt');
-            targetElements.forEach(el => {
-                const kesVal = el.getAttribute('data-kes');
-                const usdVal = el.getAttribute('data-usd');
-                el.innerText = target === 'KES' ? 'KES ' + kesVal : '$' + usdVal;
-            });
-
-            const currentActiveCard = document.querySelector('.border-amber-500');
-            if (currentActiveCard) {
-                currentSelectedValue = activeCurrency === 'KES' ? parseInt(currentActiveCard.getAttribute('data-kes-raw')) : parseInt(currentActiveCard.getAttribute('data-usd-raw'));
-            }
-        }
-
-        function selectTier(index, kesRaw, usdRaw) {
-            currentSelectedValue = activeCurrency === 'KES' ? kesRaw : usdRaw;
-            [1, 2, 3].forEach(id => {
-                const card = document.getElementById('tier-' + id);
-                const indicator = card.querySelector('.w-5.h-5');
-                if (id === index) {
-                    card.className = "p-4 rounded-2xl border-2 border-amber-500 bg-amber-50/30 cursor-pointer transition-all flex justify-between items-center gap-4";
-                    card.setAttribute('data-kes-raw', kesRaw);
-                    card.setAttribute('data-usd-raw', usdRaw);
-                    indicator.className = "w-5 h-5 rounded-full border-4 border-amber-500 flex-shrink-0 bg-white";
-                } else {
-                    card.className = "p-4 rounded-2xl border border-slate-200 hover:border-slate-300 cursor-pointer transition-all flex justify-between items-center gap-4";
-                    indicator.className = "w-5 h-5 rounded-full border border-slate-300 flex-shrink-0 bg-white";
-                }
-            });
-        }
-
-        function redirectToPayPal() {
-            const paypalEmail = "Cliffchii685@gmail.com";
-            const itemName = "Donation to Benjamin’s Foundation Kenia";
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(itemName)}&amount=${currentSelectedValue}&currency_code=${activeCurrency}`;
-            window.open(paypalUrl, '_blank');
-        }
-
-        function redirectToMPesa() {
-            const phoneNumber = "254742465641";
-            const messageText = `Hello! I would like to make a donation of ${currentSelectedValue} ${activeCurrency} to Benjamin's Foundation Kenia via M-Pesa. Please send me the payment instructions.`;
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
-            window.open(whatsappUrl, '_blank');
-        }
+<script>
+    // Front-end preview handling for submission behavior
+    document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+        // If you connect a backend service, you can remove e.preventDefault()
+        e.preventDefault(); 
         
-        document.getElementById('tier-1').setAttribute('data-kes-raw', 500);
-        document.getElementById('tier-1').setAttribute('data-usd-raw', 5);
-        document.getElementById('tier-2').setAttribute('data-kes-raw', 2000);
-        document.getElementById('tier-2').setAttribute('data-usd-raw', 15);
-        document.getElementById('tier-3').setAttribute('data-kes-raw', 10000);
-        document.getElementById('tier-3').setAttribute('data-usd-raw', 75);
-    </script>
+        // Hide form and show confirmation message
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+        window.scrollTo(0, 0);
+    });
+</script>
+
 </body>
 </html>
